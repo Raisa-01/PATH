@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Find Jobs - PathStarter</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <nav class="navbar">
+    <div class="logo">
+      <span class="logo-green">Path</span><span class="logo-dark">Starter</span>
+    </div>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="find-jobs.html" class="active">Find Jobs</a></li>
+      <li><a href="login.html">Login</a></li>
+    </ul>
+  </nav>
+
+  <!-- সার্চ বার ও জব লিস্টিং (index.html থেকে কপি করুন) -->
+  <section class="job-listings">
+    <h2>Available Jobs</h2>
+    <ul id="jobList">
+      <!-- জবগুলি ডাইনামিকভাবে লোড হবে -->
+    </ul>
+  </section>
+
+  <script>
+    // ডেমো ডেটা (পরবর্তীতে ডেটাবেস থেকে রিয়েল ডেটা লোড করুন)
+    const jobs = [
+      { id: 1, title: "Frontend Internship", company: "CodeLab", location: "Remote", category: "internship" },
+      { id: 2, title: "Content Writer", company: "EduVerse", location: "Remote", category: "part-time" }
+    ];
+
+    const jobList = document.getElementById("jobList");
+    jobs.forEach(job => {
+      jobList.innerHTML += `
+        <li data-category="${job.category}">
+          <h3><a href="job-details.html?id=${job.id}">${job.title}</a></h3>
+          <p>Company: ${job.company}</p>
+          <p>Location: ${job.location}</p>
+        </li>
+      `;
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Login - PathStarter</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <nav class="navbar">
+    <div class="logo">
+      <span class="logo-green">Path</span><span class="logo-dark">Starter</span>
+    </div>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+    </ul>
+  </nav>
+
+  <div class="page-content">
+    <h2>Login to Your Account</h2>
+    <form id="loginForm">
+      <label>Email:</label>
+      <input type="email" required>
+      <label>Password:</label>
+      <input type="password" required>
+      <button type="submit">Login</button>
+      <p>Don't have an account? <a href="register.html">Register</a></p>
+    </form>
+  </div>
+
+  <script>
+    document.getElementById("loginForm").addEventListener("submit", (e) => {
+      e.preventDefault();
+      alert("Login functionality will be added with backend!");
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Job Details - PathStarter</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <nav class="navbar">
+    <div class="logo">
+      <span class="logo-green">Path</span><span class="logo-dark">Starter</span>
+    </div>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="find-jobs.html">Find Jobs</a></li>
+      <li><a href="login.html">Login</a></li>
+    </ul>
+  </nav>
+
+  <section class="job-details-container">
+    <div class="job-header">
+      <h1 id="jobTitle">Data Entry Clerk</h1>
+      <p id="jobCompany">Company: InfoBridge</p>
+      <p id="jobLocation">Location: Remote</p>
+      <a href="#" class="btn-apply">Apply Now</a>
+    </div>
+
+    <div class="job-content">
+      <div class="job-section">
+        <h2>Job Description</h2>
+        <p id="jobDescription">
+          We are seeking a Data Entry Clerk to join our team. In this role, you will accurately transfer information into our database system. Your responsibilities may include verifying data, updating existing information, entering new information, creating spreadsheets, and other administrative tasks. The ideal candidate is a fast and accurate typist with attention to detail, excellent computer skills, ability to work independently and in team environment.
+        </p>
+      </div>
+
+      <div class="job-section">
+        <h2>Benefits & Perks</h2>
+        <ul class="benefits-list">
+          <li><i class="fas fa-check-circle"></i> Flexible schedule</li>
+          <li><i class="fas fa-check-circle"></i> Health insurance</li>
+          <li><i class="fas fa-check-circle"></i> Paid time off</li>
+          <li><i class="fas fa-check-circle"></i> Training & development</li>
+          <li><i class="fas fa-check-circle"></i> Career Growth Opportunities</li>
+        </ul>
+      </div>
+
+      <div class="job-section">
+        <h2>Responsibilities</h2>
+        <ul class="responsibilities-list">
+          <li><i class="fas fa-angle-right"></i> Continuously explore emerging technologies and develop forward-thinking concepts to support the company's digital growth.</li>
+          <li><i class="fas fa-angle-right"></i> Collect information directly from database and enter information.</li>
+          <li><i class="fas fa-angle-right"></i> Confirm accuracy of data by comparing to original documents.</li>
+          <li><i class="fas fa-angle-right"></i> Create reports or otherwise retrieve data from the database.</li>
+          <li><i class="fas fa-angle-right"></i> High Attention to Detail.</li>
+          <li><i class="fas fa-angle-right"></i> Ability to work with a team environment remotely.</li>
+        </ul>
+      </div>
+
+      <div class="job-section">
+        <h2>Qualifications</h2>
+        <ul class="qualifications-list">
+          <li><i class="fas fa-check"></i> High school diploma/GED.</li>
+          <li><i class="fas fa-check"></i> Previous experience as a Data Entry Clerk or in a similar position is preferred.</li>
+          <li><i class="fas fa-check"></i> Skilled in Microsoft Office Applications.</li>
+          <li><i class="fas fa-check"></i> Quickly learns and adapts to new database systems and tools.</li>
+          <li><i class="fas fa-check"></i> Excellent verbal and written communication skills.</li>
+          <li><i class="fas fa-check"></i> Attention to detail.</li>
+        </ul>
+      </div>
+
+      <div class="job-actions">
+        <a href="#" class="btn-apply">Apply Now</a>
+        <a href="find-jobs.html" class="btn-back">Back to Jobs</a>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-content">
+      <p>© 2025 PathStarter. All rights reserved.</p>
+      <p>
+        <a href="about.html">About</a> |
+        <a href="contact.html">Contact</a> |
+        <a href="privacy.html">Privacy Policy</a>
+      </p>
+    </div>
+  </footer>
+
+  <script>
+    // URL থেকে জব আইডি নিয়ে ডেটা লোড করুন
+    const params = new URLSearchParams(window.location.search);
+    const jobId = params.get("id");
+
+    // ডেমো ডেটাবেস (আসল প্রজেক্টে Firebase/MongoDB ব্যবহার করুন)
+    const jobs = {
+      1: {
+        title: "Frontend Internship",
+        company: "CodeLab",
+        location: "Remote",
+        description: "Work with HTML, CSS, and JavaScript to build UI components.",
+        benefits: ["Flexible schedule", "Mentorship", "Certificate"],
+        responsibilities: ["Build responsive UIs", "Debug code", "Attend team meetings"],
+        qualifications: ["Basic HTML/CSS", "JavaScript knowledge", "Student status"]
+      },
+      6: {
+        title: "Data Entry Clerk",
+        company: "InfoBridge",
+        location: "Remote",
+        description: "Accurately transfer information into our database system.",
+        benefits: ["Flexible schedule", "Health insurance", "Paid time off"],
+        responsibilities: ["Verify data", "Create reports", "Work remotely"],
+        qualifications: ["High school diploma", "Microsoft Office skills", "Attention to detail"]
+      }
+    };
+
+    // জব ডেটা সেট করুন
+    if (jobs[jobId]) {
+      const job = jobs[jobId];
+      document.getElementById("jobTitle").textContent = job.title;
+      document.getElementById("jobCompany").textContent = `Company: ${job.company}`;
+      document.getElementById("jobLocation").textContent = `Location: ${job.location}`;
+      document.getElementById("jobDescription").textContent = job.description;
+
+      // Benefits ডাইনামিকভাবে সেট করুন
+      const benefitsList = document.querySelector(".benefits-list");
+      benefitsList.innerHTML = job.benefits.map(item => 
+        `<li><i class="fas fa-check-circle"></i> ${item}</li>`
+      ).join("");
+
+      // Responsibilities সেট করুন
+      const responsibilitiesList = document.querySelector(".responsibilities-list");
+      responsibilitiesList.innerHTML = job.responsibilities.map(item => 
+        `<li><i class="fas fa-angle-right"></i> ${item}</li>`
+      ).join("");
+
+      // Qualifications সেট করুন
+      const qualificationsList = document.querySelector(".qualifications-list");
+      qualificationsList.innerHTML = job.qualifications.map(item => 
+        `<li><i class="fas fa-check"></i> ${item}</li>`
+      ).join("");
+    }
+  </script>
+</body>
+</html>
