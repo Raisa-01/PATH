@@ -447,11 +447,32 @@ footer a {
   margin-top: 30px;
 }
 
+/* style.css ফাইলে যোগ করুন */
 .btn-back {
-  background-color: #f0f0f0;
-  color: #333;
-  padding: 12px 24px;
+  padding: 12px 24px; /* বাটনের সাইজ বড় করুন */
+  font-size: 16px; /* ফন্ট সাইজ */
+  background-color: #f0f0f0; /* হালকা গ্রে ব্যাকগ্রাউন্ড */
+  color: #333; /* ডার্ক টেক্সট */
+  border: 5;
   border-radius: 5px;
   text-decoration: none;
-  font-weight: bold;
+  display: inline-block;
+  margin-top: 15px;
+  transition: all 0.3s ease; /* স্মুথ হোভার ইফেক্ট */
+}
+
+.btn-back:hover {
+  background-color: #f0ab3d; /* প্রাইমারি কালার */
+  color: white; /* সাদা টেক্সট */
+}@media (max-width: 768px) {
+  .btn-back {
+    padding: 10px 20px; /* মোবাইলে কম প্যাডিং */
+    font-size: 14px;
+  }
+}
+@media (max-width: 768px) {
+  .btn-apply {
+    padding: 10px 20px; /* মোবাইলে কম প্যাডিং */
+    font-size: 14px;
+  }
 }
