@@ -2,13 +2,295 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Find Jobs - PathStarter</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --primary: #1e548e;
+      --primary-dark: #1e548e;
+      --dark: #1e548e;
+      --light: #f5f5f5;
+      --gray: #95a5a6;
+      --light-gray: #ecf0f1;
+      --border-radius: 8px;
+      --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      --transition: all 0.3s ease;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    
+    body {
+      background-color: #f9f9f9;
+      color: var(--dark);
+      line-height: 1.6;
+    }
+    
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem 5%;
+      background-color: white;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+    
+    .logo {
+      font-size: 1.8rem;
+      font-weight: 700;
+    }
+    
+    .logo-green {
+      color: var(--primary);
+    }
+    
+    .logo-dark {
+      color: var(--dark);
+    }
+    
+    .nav-links {
+      display: flex;
+      list-style: none;
+    }
+    
+    .nav-links li {
+      margin-left: 2rem;
+    }
+    
+    .nav-links a {
+      text-decoration: none;
+      color: var(--dark);
+      font-weight: 500;
+      transition: var(--transition);
+      padding: 0.5rem 0;
+      position: relative;
+    }
+    
+    .nav-links a:hover {
+      color: var(--primary);
+    }
+    
+    .nav-links a.active {
+      color: var(--primary);
+    }
+    
+    .nav-links a.active::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background-color: var(--primary);
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 2rem auto;
+      padding: 0 1.5rem;
+    }
+    
+    .search-container {
+      background: white;
+      border-radius: var(--border-radius);
+      box-shadow: var(--box-shadow);
+      padding: 2rem;
+      margin-bottom: 2rem;
+    }
+    
+    .search-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    
+    .search-field, .location-field {
+      flex: 1;
+      min-width: 250px;
+      display: flex;
+      align-items: center;
+      padding: 0.8rem 1rem;
+      border: 1px solid #ddd;
+      border-radius: var(--border-radius);
+      transition: var(--transition);
+    }
+    
+    .search-field:focus-within, .location-field:focus-within {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 2px rgba(46, 204, 113, 0.2);
+    }
+    
+    .search-field i, .location-field i {
+      margin-right: 0.8rem;
+      color: var(--gray);
+    }
+    
+    .search-field input {
+      flex: 1;
+      border: none;
+      outline: none;
+      font-size: 1rem;
+    }
+    
+    .location-field span {
+      color: var(--dark);
+    }
+    
+    .search-button {
+      padding: 0 2rem;
+      background-color: var(--primary);
+      color: white;
+      border: none;
+      border-radius: var(--border-radius);
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    
+    .search-button:hover {
+      background-color: var(--primary-dark);
+    }
+    
+    .job-listings {
+      background: white;
+      border-radius: var(--border-radius);
+      box-shadow: var(--box-shadow);
+      padding: 2rem;
+    }
+    
+    .job-listings h2 {
+      margin-bottom: 1.5rem;
+      color: var(--dark);
+      font-size: 1.5rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--light-gray);
+    }
+    
+    .job-listings ul {
+      list-style: none;
+    }
+    
+    .job-listings li {
+      padding: 1.5rem 0;
+      border-bottom: 1px solid var(--light-gray);
+      transition: var(--transition);
+    }
+    
+    .job-listings li:last-child {
+      border-bottom: none;
+    }
+    
+    .job-listings li:hover {
+      background-color: rgba(46, 204, 113, 0.05);
+    }
+    
+    .job-listings h3 {
+      margin-bottom: 0.5rem;
+    }
+    
+    .job-listings h3 a {
+      color: var(--dark);
+      text-decoration: none;
+      transition: var(--transition);
+    }
+    
+    .job-listings h3 a:hover {
+      color: var(--primary);
+    }
+    
+    .job-listings p {
+      color: var(--gray);
+      margin-bottom: 0.3rem;
+    }
+    
+    .job-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-top: 0.5rem;
+    }
+    
+    .job-category {
+      display: inline-block;
+      padding: 0.3rem 0.8rem;
+      background-color: var(--light-gray);
+      border-radius: 20px;
+      font-size: 0.8rem;
+      color: var(--dark);
+    }
+    
+    .internship {
+      background-color: rgba(52, 152, 219, 0.1);
+      color: #3498db;
+    }
+    
+    .part-time {
+      background-color: rgba(155, 89, 182, 0.1);
+      color: #9b59b6;
+    }
+    
+    .freelance {
+      background-color: rgba(230, 126, 34, 0.1);
+      color: #e67e22;
+    }
+    
+    @media (max-width: 768px) {
+      .search-bar {
+        flex-direction: column;
+      }
+      
+      .search-field, .location-field {
+        width: 100%;
+      }
+      
+      .search-button {
+        width: 100%;
+        padding: 0.8rem;
+      }
+      
+      .nav-links {
+        display: none;
+      }
+    }
+     footer {
+      background-color: #333;
+      color: white;
+      text-align: center;
+      padding: 20px;
+      margin-top: 60px;
+    }
+
+    footer a {
+      color: #d2dde8;
+      text-decoration: none;
+      margin: 0 10px;
+      transition: color 0.3s ease;
+    }
+
+    footer a:hover {
+      color: white;
+    }
+
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    footer p {
+      margin: 10px 0;
+    }
+  </style>
 </head>
 <body>
   <nav class="navbar">
     <div class="logo">
-      <span class="logo-green">Path</span><span class="logo-dark">Starter</span>
+      <span class="logo-green">Path</span><span class="logo-dark">Starter.</span>
     </div>
     <ul class="nav-links">
       <li><a href="index.html">Home</a></li>
@@ -17,31 +299,146 @@
     </ul>
   </nav>
 
-  <!-- সার্চ বার ও জব লিস্টিং (index.html থেকে কপি করুন) -->
-  <section class="job-listings">
-    <h2>Available Jobs</h2>
-    <ul id="jobList">
-      <!-- জবগুলি ডাইনামিকভাবে লোড হবে -->
-    </ul>
-  </section>
+  <div class="container">
+    <div class="search-container">
+      <div class="search-bar">
+        <div class="search-field">
+          <i class="fas fa-search"></i>
+          <input type="text" placeholder="Job title, keywords, or company">
+        </div>
+        <div class="location-field">
+          <i class="fas fa-map-marker-alt"></i>
+          <span>Dhaka, Bangladesh or Remote</span>
+        </div>
+        <button class="search-button">Search</button>
+      </div>
+    </div>
+    
+    <section class="job-listings">
+      <h2>Latest Job Listings</h2>
+      <ul id="jobList">
+        <!-- Jobs will be loaded here dynamically -->
+      </ul>
+    </section>
+  </div>
 
   <script>
-    // ডেমো ডেটা (পরবর্তীতে ডেটাবেস থেকে রিয়েল ডেটা লোড করুন)
+    // Demo data (replace with real data from database later)
     const jobs = [
-      { id: 1, title: "Frontend Internship", company: "CodeLab", location: "Remote", category: "internship" },
-      { id: 2, title: "Content Writer", company: "EduVerse", location: "Remote", category: "part-time" }
+      { 
+        id: 1, 
+        title: "Frontend Internship", 
+        company: "CodeLab", 
+        location: "Remote", 
+        category: "internship",
+        type: "Internship",
+        posted: "2 days ago"
+      },
+      { 
+        id: 2, 
+        title: "Content Writer (Part-time)", 
+        company: "EduVerse", 
+        location: "Remote", 
+        category: "part-time",
+        type: "Part-time",
+        posted: "1 week ago"
+      },
+      { 
+        id: 3, 
+        title: "Flutter Developer", 
+        company: "AppNest", 
+        location: "Remote", 
+        category: "freelance",
+        type: "Freelance",
+        posted: "3 days ago"
+      },
+      { 
+        id: 4, 
+        title: "Backend Developer (Node.js)", 
+        company: "DevHive", 
+        location: "Remote", 
+        category: "freelance",
+        type: "Freelance",
+        posted: "Just now"
+      },
+      { 
+        id: 5, 
+        title: "UI/UX Design Intern", 
+        company: "PixelCraft", 
+        location: "Remote", 
+        category: "internship",
+        type: "Internship",
+        posted: "5 days ago"
+      },
+      { 
+        id: 6, 
+        title: "Data Entry Assistant", 
+        company: "InfoBridge", 
+        location: "Remote", 
+        category: "part-time",
+        type: "Part-time",
+        posted: "1 day ago"
+      }
     ];
+      
+
 
     const jobList = document.getElementById("jobList");
+    
     jobs.forEach(job => {
-      jobList.innerHTML += `
-        <li data-category="${job.category}">
+      const jobItem = document.createElement("li");
+      jobItem.dataset.category = job.category;
+      
+      jobItem.innerHTML = `
+        <h3><a href="job-details.html?id=${job.id}">${job.title}</a></h3>
+        <p>Company: ${job.company}</p>
+        <p>Location: ${job.location}</p>
+        <div class="job-meta">
+          <span class="job-category ${job.category}">${job.type}</span>
+          <span class="job-posted">${job.posted}</span>
+        </div>
+      `;
+      
+      jobList.appendChild(jobItem);
+    });
+
+    // Search functionality would be added here
+    document.querySelector('.search-button').addEventListener('click', () => {
+      const searchTerm = document.querySelector('.search-field input').value.toLowerCase();
+      const locationTerm = document.querySelector('.location-field span').textContent.toLowerCase();
+      
+      const filteredJobs = jobs.filter(job => 
+        job.title.toLowerCase().includes(searchTerm) || 
+        job.company.toLowerCase().includes(searchTerm) &&
+        job.location.toLowerCase().includes(locationTerm)
+      );
+      
+      jobList.innerHTML = '';
+      filteredJobs.forEach(job => {
+        const jobItem = document.createElement("li");
+        jobItem.dataset.category = job.category;
+        jobItem.innerHTML = `
           <h3><a href="job-details.html?id=${job.id}">${job.title}</a></h3>
           <p>Company: ${job.company}</p>
           <p>Location: ${job.location}</p>
-        </li>
-      `;
+          <div class="job-meta">
+            <span class="job-category ${job.category}">${job.type}</span>
+            <span class="job-posted">${job.posted}</span>
+          </div>
+        `;
+        jobList.appendChild(jobItem);
+      });
     });
   </script>
+  <footer>
+    <div class="footer-content">
+      <p>© 2025 PathStarter. All rights reserved.</p>
+      <p>
+        <a href="about.html">About</a> |
+        <a href="contact.html">Contact</a> |
+        <a href="privacy.html">Privacy Policy</a>
+      </p>
+    </div>
+  </footer>
 </body>
 </html>
